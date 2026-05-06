@@ -1,0 +1,2307 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AuditMind — RBI & NBFC Compliance Intelligence</title>
+<meta name="description" content="Deep-dive analysis of RBI regulations, PMLA frameworks, and NBFC compliance — translated into actionable audit intelligence.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+(function(){
+  var t = localStorage.getItem('auditmind-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+})();
+</script>
+<style>
+/* ═══════════════════════════════════════════════
+   DESIGN TOKENS — DARK (DEFAULT)
+═══════════════════════════════════════════════ */
+:root,
+[data-theme="dark"] {
+  --bg:            #080b12;
+  --bg-2:          #0d1220;
+  --bg-3:          #121929;
+  --surface:       #111827;
+  --surface-2:     #1a2236;
+  --border:        rgba(255,255,255,0.07);
+  --border-strong: rgba(255,255,255,0.14);
+  --text:          #ede9e0;
+  --text-2:        #9aa5bf;
+  --text-3:        #5a6a82;
+  --gold:          #c9a84c;
+  --gold-dim:      rgba(201,168,76,0.12);
+  --gold-border:   rgba(201,168,76,0.25);
+  --red:           #b83228;
+  --red-dim:       rgba(184,50,40,0.12);
+  --critical:      #e53935;
+  --critical-dim:  rgba(229,57,53,0.12);
+  --high:          #e67c22;
+  --high-dim:      rgba(230,124,34,0.12);
+  --nav-bg:        rgba(8,11,18,0.94);
+  --hero-line:     rgba(201,168,76,0.4);
+  --card-shadow:   none;
+  --btn-primary-bg:   #c9a84c;
+  --btn-primary-text: #080b12;
+}
+
+[data-theme="light"] {
+  --bg:            #f4f2ec;
+  --bg-2:          #eceae3;
+  --bg-3:          #e5e2d9;
+  --surface:       #ffffff;
+  --surface-2:     #f9f8f5;
+  --border:        rgba(0,0,0,0.08);
+  --border-strong: rgba(0,0,0,0.16);
+  --text:          #0d1220;
+  --text-2:        #4a5568;
+  --text-3:        #9aa5bf;
+  --gold:          #a87c20;
+  --gold-dim:      rgba(168,124,32,0.09);
+  --gold-border:   rgba(168,124,32,0.22);
+  --red:           #9e2a20;
+  --red-dim:       rgba(158,42,32,0.08);
+  --critical:      #c0392b;
+  --critical-dim:  rgba(192,57,43,0.09);
+  --high:          #c0640a;
+  --high-dim:      rgba(192,100,10,0.09);
+  --nav-bg:        rgba(244,242,236,0.96);
+  --hero-line:     rgba(168,124,32,0.35);
+  --card-shadow:   0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+  --btn-primary-bg:   #0d1220;
+  --btn-primary-text: #f4f2ec;
+}
+
+/* ═══════════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background 0.4s ease, color 0.4s ease;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* ═══════════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: background 0.4s;
+}
+
+.nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.nav-logo-mark {
+  width: 36px; height: 36px;
+  background: var(--gold);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #080b12;
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
+}
+
+.nav-logo-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--text); }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.nav-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  border: 1px solid var(--gold-border);
+  background: var(--gold-dim);
+  padding: 4px 10px;
+  border-radius: 3px;
+}
+
+.theme-toggle {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--text-2);
+  transition: all 0.2s;
+}
+.theme-toggle:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.btn-nav {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  padding: 10px 20px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.btn-nav:hover { opacity: 0.85; }
+
+/* ═══════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  padding: 140px 40px 80px;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 440px;
+  gap: 80px;
+  align-items: center;
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.hero-eyebrow-line {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.hero-eyebrow-text {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(44px, 5vw, 72px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 28px;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.hero-title strong {
+  font-weight: 700;
+}
+
+.hero-desc {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--text-2);
+  max-width: 520px;
+  margin-bottom: 44px;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--gold);
+  color: #080b12;
+  padding: 14px 28px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--text-2);
+  padding: 14px 28px;
+  border-radius: 4px;
+  border: 1px solid var(--border-strong);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-outline:hover { color: var(--text); border-color: var(--text-2); }
+
+/* Hero card */
+.hero-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+}
+
+.hero-card-header {
+  padding: 24px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+}
+
+.hero-card-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 8px;
+}
+
+.hero-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.hero-card-ref {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--text-3);
+  margin-top: 6px;
+}
+
+.hero-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.hero-stat {
+  padding: 20px 24px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-stat:nth-child(2),
+.hero-stat:nth-child(4) { border-right: none; }
+.hero-stat:nth-child(3),
+.hero-stat:nth-child(4) { border-bottom: none; }
+
+.hero-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.hero-stat-num.gold { color: var(--gold); }
+.hero-stat-num.red  { color: var(--critical); }
+.hero-stat-num.high { color: var(--high); }
+
+.hero-stat-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.hero-card-footer {
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+}
+
+.hero-card-footer-text {
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.hero-card-cta {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: gap 0.2s;
+}
+.hero-card-cta:hover { gap: 8px; }
+
+/* ═══════════════════════════════════════════════
+   IMPACT BAR
+═══════════════════════════════════════════════ */
+.impact-bar {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.impact-bar-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.impact-item {
+  padding: 36px 32px;
+  border-right: 1px solid var(--border);
+  position: relative;
+}
+
+.impact-item:last-child { border-right: none; }
+
+.impact-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.impact-num.gold { color: var(--gold); }
+.impact-num.red  { color: var(--critical); }
+
+.impact-label {
+  font-size: 12px;
+  color: var(--text-2);
+  line-height: 1.4;
+}
+
+.impact-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--text-3);
+  letter-spacing: 0.06em;
+  margin-top: 2px;
+}
+
+/* ═══════════════════════════════════════════════
+   SECTION BASE
+═══════════════════════════════════════════════ */
+section {
+  padding: 96px 40px;
+}
+
+.section-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.section-label-line {
+  width: 32px; height: 1px;
+  background: var(--gold);
+}
+
+.section-label-text {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 3.5vw, 52px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.section-title em { font-style: italic; color: var(--text-2); }
+
+.section-subtitle {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-2);
+  max-width: 600px;
+}
+
+/* ═══════════════════════════════════════════════
+   WHY AUDITMIND
+═══════════════════════════════════════════════ */
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+  margin-top: 64px;
+}
+
+.why-left {}
+
+.why-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--text);
+  padding-left: 24px;
+  border-left: 3px solid var(--gold);
+  margin: 40px 0;
+}
+
+.why-author {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.why-author-avatar {
+  width: 48px; height: 48px;
+  background: var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #080b12;
+  flex-shrink: 0;
+}
+
+.why-author-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.why-author-title {
+  font-size: 12px;
+  color: var(--text-3);
+  margin-top: 2px;
+}
+
+.why-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.why-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding: 6px 12px;
+  border-radius: 3px;
+  border: 1px solid var(--border-strong);
+  color: var(--text-2);
+}
+
+.why-right {}
+
+.why-pillar {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.why-pillar:first-child { padding-top: 0; }
+.why-pillar:last-child  { border-bottom: none; }
+
+.why-pillar-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 0.06em;
+  padding-top: 3px;
+}
+
+.why-pillar-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.why-pillar-desc {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-2);
+}
+
+/* ═══════════════════════════════════════════════
+   COVERAGE AREAS
+═══════════════════════════════════════════════ */
+.coverage-section {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.coverage-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 56px;
+}
+
+.coverage-item {
+  background: var(--surface);
+  padding: 36px 32px;
+  transition: background 0.2s;
+}
+
+.coverage-item:hover {
+  background: var(--surface-2);
+}
+
+.coverage-icon {
+  font-size: 28px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.coverage-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.coverage-desc {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text-2);
+  margin-bottom: 16px;
+}
+
+.coverage-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.coverage-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--text-3);
+  border: 1px solid var(--border);
+  padding: 3px 8px;
+  border-radius: 2px;
+}
+
+/* ═══════════════════════════════════════════════
+   FEATURED ARTICLE
+═══════════════════════════════════════════════ */
+.featured-section {
+  background: var(--bg-2);
+}
+
+.featured-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.featured-card {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: var(--card-shadow);
+}
+
+.featured-main {
+  padding: 56px;
+  border-right: 1px solid var(--border);
+}
+
+.featured-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-weight: 500;
+}
+
+.badge-gold   { background: var(--gold-dim);     color: var(--gold);     border: 1px solid var(--gold-border); }
+.badge-red    { background: var(--critical-dim);  color: var(--critical); border: 1px solid rgba(229,57,53,0.25); }
+.badge-high   { background: var(--high-dim);      color: var(--high);     border: 1px solid rgba(230,124,34,0.25); }
+.badge-muted  { background: var(--border);        color: var(--text-3);   border: 1px solid var(--border); }
+
+.featured-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 2.5vw, 36px);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+
+.featured-title em { font-style: italic; }
+
+.featured-desc {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text-2);
+  margin-bottom: 36px;
+}
+
+.featured-highlights {
+  margin-bottom: 40px;
+}
+
+.featured-highlight {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.featured-highlight:first-child { border-top: 1px solid var(--border); }
+
+.featured-highlight::before {
+  content: '→';
+  color: var(--gold);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.featured-sidebar {
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  background: var(--surface-2);
+}
+
+.featured-stat-block {}
+
+.featured-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.featured-stat-num.red  { color: var(--critical); }
+.featured-stat-num.high { color: var(--high); }
+.featured-stat-num.gold { color: var(--gold); }
+
+.featured-stat-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.featured-meta-block {
+  padding: 20px 0;
+  border-top: 1px solid var(--border);
+}
+
+.featured-meta-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 6px;
+}
+
+.featured-meta-value {
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.featured-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--gold);
+  padding: 14px 0;
+  border-top: 1px solid var(--border);
+  transition: gap 0.2s;
+}
+.featured-cta:hover { gap: 14px; }
+
+/* ═══════════════════════════════════════════════
+   PUBLICATIONS GRID
+═══════════════════════════════════════════════ */
+.pubs-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 48px;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.pubs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.pub-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: var(--card-shadow);
+}
+
+.pub-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+}
+
+.pub-card-body {
+  padding: 28px;
+}
+
+.pub-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.pub-card-topic {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.pub-card-status {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 2px;
+  border: 1px solid var(--border);
+  color: var(--text-3);
+}
+
+.pub-card-status.live {
+  border-color: rgba(34,197,94,0.3);
+  color: #22c55e;
+  background: rgba(34,197,94,0.08);
+}
+
+.pub-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.pub-card-desc {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text-2);
+  margin-bottom: 20px;
+}
+
+.pub-card-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.pub-card-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--text-3);
+  padding: 3px 8px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+}
+
+.pub-card-footer {
+  padding: 16px 28px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface-2);
+}
+
+.pub-card-date {
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.pub-card-link {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: gap 0.15s;
+}
+.pub-card-link:hover { gap: 8px; }
+
+/* ═══════════════════════════════════════════════
+   NEWSLETTER
+═══════════════════════════════════════════════ */
+.newsletter-section {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.newsletter-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.newsletter-icon {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.newsletter-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.newsletter-desc {
+  font-size: 15px;
+  color: var(--text-2);
+  line-height: 1.7;
+  margin-bottom: 36px;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 12px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.newsletter-input {
+  flex: 1;
+  padding: 14px 18px;
+  background: var(--bg);
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.newsletter-input:focus { border-color: var(--gold); }
+.newsletter-input::placeholder { color: var(--text-3); }
+
+.newsletter-btn {
+  padding: 14px 24px;
+  background: var(--gold);
+  color: #080b12;
+  border: none;
+  border-radius: 4px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+.newsletter-btn:hover { opacity: 0.88; }
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+footer {
+  background: var(--bg-2);
+  border-top: 1px solid var(--border);
+  padding: 64px 40px 40px;
+}
+
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 280px 1fr 1fr 1fr;
+  gap: 60px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--border);
+}
+
+.footer-brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.footer-brand-mark {
+  width: 32px; height: 32px;
+  background: var(--gold);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #080b12;
+}
+
+.footer-brand-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.footer-brand-desc {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-3);
+}
+
+.footer-col-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 20px;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-links a {
+  font-size: 13px;
+  color: var(--text-2);
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--gold); }
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 32px;
+  font-size: 12px;
+  color: var(--text-3);
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-disclaimer {
+  font-size: 11px;
+  color: var(--text-3);
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+/* ═══════════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .hero { grid-template-columns: 1fr; gap: 48px; padding-top: 120px; }
+  .hero-card { max-width: 480px; }
+  .impact-bar-inner { grid-template-columns: repeat(3, 1fr); }
+  .impact-item:nth-child(3) { border-right: none; }
+  .why-grid { grid-template-columns: 1fr; gap: 48px; }
+  .featured-card { grid-template-columns: 1fr; }
+  .featured-sidebar { border-top: 1px solid var(--border); flex-direction: row; flex-wrap: wrap; }
+  .pubs-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  section { padding: 64px 24px; }
+  nav .nav-inner { padding: 0 24px; }
+  .nav-links { display: none; }
+  .hero { padding: 100px 24px 48px; }
+  .impact-bar-inner { grid-template-columns: repeat(2, 1fr); padding: 0 24px; }
+  .coverage-grid { grid-template-columns: 1fr; }
+  .pubs-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; gap: 32px; }
+  .newsletter-form { flex-direction: column; }
+  .footer-inner { padding: 0; }
+}
+
+/* ═══════════════════════════════════════════════
+   COPY TOAST
+═══════════════════════════════════════════════ */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--text);
+  color: var(--bg);
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s;
+  pointer-events: none;
+  z-index: 200;
+}
+.toast.show { opacity: 1; transform: none; }
+
+/* ═══════════════════════════════════════════════
+   AI CHAT WIDGET
+═══════════════════════════════════════════════ */
+.chat-fab {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-size: 22px;
+}
+.chat-fab:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(0,0,0,0.4); }
+.chat-fab.open { background: var(--text-3); }
+
+.chat-badge {
+  position: absolute;
+  top: -4px; right: -4px;
+  width: 18px; height: 18px;
+  background: var(--critical);
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.chat-window {
+  position: fixed;
+  bottom: 96px;
+  right: 28px;
+  z-index: 998;
+  width: 380px;
+  max-height: 560px;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  transform: scale(0.92) translateY(16px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.25s cubic-bezier(.34,1.56,.64,1), opacity 0.2s;
+  transform-origin: bottom right;
+}
+
+.chat-window.visible {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.chat-header {
+  padding: 16px 20px;
+  background: var(--bg-2);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.chat-header-avatar {
+  width: 36px; height: 36px;
+  background: var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #080b12;
+  flex-shrink: 0;
+}
+
+.chat-header-info { flex: 1; }
+
+.chat-header-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.chat-header-status {
+  font-size: 11px;
+  color: #22c55e;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.chat-header-status::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: #22c55e;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.chat-close {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: transparent;
+  cursor: pointer;
+  color: var(--text-3);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+.chat-close:hover { color: var(--text); border-color: var(--border-strong); }
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+.chat-msg {
+  display: flex;
+  flex-direction: column;
+  max-width: 88%;
+  gap: 4px;
+  animation: msgIn 0.2s ease;
+}
+
+@keyframes msgIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.chat-msg.user { align-self: flex-end; align-items: flex-end; }
+.chat-msg.ai   { align-self: flex-start; align-items: flex-start; }
+
+.chat-bubble {
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.chat-msg.user .chat-bubble {
+  background: var(--gold);
+  color: #080b12;
+  border-bottom-right-radius: 4px;
+  font-weight: 500;
+}
+
+.chat-msg.ai .chat-bubble {
+  background: var(--surface-2);
+  color: var(--text);
+  border-bottom-left-radius: 4px;
+  border: 1px solid var(--border);
+}
+
+.chat-msg-time {
+  font-size: 10px;
+  color: var(--text-3);
+  font-family: 'DM Mono', monospace;
+}
+
+.chat-typing {
+  align-self: flex-start;
+  padding: 10px 14px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  border-bottom-left-radius: 4px;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.chat-typing span {
+  width: 6px; height: 6px;
+  background: var(--text-3);
+  border-radius: 50%;
+  animation: bounce 1.2s infinite;
+}
+.chat-typing span:nth-child(2) { animation-delay: 0.2s; }
+.chat-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+  40% { transform: translateY(-5px); opacity: 1; }
+}
+
+.chat-suggestions {
+  padding: 8px 16px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.chat-suggestion {
+  font-size: 11px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--border-strong);
+  background: transparent;
+  color: var(--text-2);
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.15s;
+  text-align: left;
+}
+.chat-suggestion:hover { border-color: var(--gold); color: var(--gold); }
+
+.chat-input-row {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.chat-input {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--text);
+  resize: none;
+  outline: none;
+  max-height: 100px;
+  line-height: 1.5;
+  transition: border-color 0.15s;
+}
+.chat-input:focus { border-color: var(--gold); }
+.chat-input::placeholder { color: var(--text-3); }
+
+.chat-send {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  flex-shrink: 0;
+  transition: opacity 0.15s, transform 0.15s;
+}
+.chat-send:hover { opacity: 0.85; transform: scale(1.05); }
+.chat-send:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+.chat-disclaimer {
+  text-align: center;
+  font-size: 10px;
+  color: var(--text-3);
+  padding: 0 16px 10px;
+  font-family: 'DM Mono', monospace;
+}
+
+@media (max-width: 440px) {
+  .chat-window { width: calc(100vw - 32px); right: 16px; }
+  .chat-fab { right: 16px; bottom: 16px; }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ══ NAV ══════════════════════════════════════ -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-mark">A</div>
+      <span class="nav-logo-text">AuditMind</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#why">Why AuditMind</a></li>
+      <li><a href="#coverage">Coverage</a></li>
+      <li><a href="blog.html">Publications</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <span class="nav-badge">RBI · 2025</span>
+      <button class="theme-toggle" id="themeBtn" aria-label="Toggle theme" onclick="toggleTheme()">☾</button>
+      <a href="blog.html" class="btn-nav">Read Blogs</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ══════════════════════════════════════ -->
+<section style="padding: 0;">
+  <div class="hero">
+    <div class="hero-left reveal">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <span class="hero-eyebrow-text">RBI · NBFC · Compliance Intelligence</span>
+      </div>
+      <h1 class="hero-title">
+        Where <em>Regulatory</em><br>
+        Complexity Meets<br>
+        <strong>Audit Clarity</strong>
+      </h1>
+      <p class="hero-desc">
+        Deep-dive analysis of RBI regulations, PMLA frameworks, and NBFC compliance — 
+        translated into actionable audit intelligence, real-world case studies, and forensic red flags.
+      </p>
+      <div class="hero-ctas">
+        <a href="blog.html" class="btn-primary">Explore Articles →</a>
+        <a href="#why" class="btn-outline">About the Author</a>
+      </div>
+    </div>
+
+    <div class="hero-card reveal" style="transition-delay:0.15s">
+      <div class="hero-card-header">
+        <div class="hero-card-tag">Latest Publication</div>
+        <div class="hero-card-title">RBI NBFC–KYC Directions 2025:<br>Complete Audit Intelligence Framework</div>
+        <div class="hero-card-ref">DOR.AML.REC.No.280/14.01.003/2025-26 · Nov 28, 2025</div>
+      </div>
+      <div class="hero-stats-grid">
+        <div class="hero-stat">
+          <div class="hero-stat-num red">7</div>
+          <div class="hero-stat-label">Critical</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num high">5</div>
+          <div class="hero-stat-label">High Risk</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num gold">80+</div>
+          <div class="hero-stat-label">Red Flags</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">6</div>
+          <div class="hero-stat-label">Cases</div>
+        </div>
+      </div>
+      <div class="hero-card-footer">
+        <span class="hero-card-footer-text">16 provisions · Fully analyzed</span>
+        <a href="article-kyc-2025.html" class="hero-card-cta">Read Now →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ IMPACT BAR ════════════════════════════════ -->
+<div class="impact-bar">
+  <div class="impact-bar-inner">
+    <div class="impact-item reveal">
+      <div class="impact-num" data-count="16">0</div>
+      <div class="impact-label">Regulations Decoded</div>
+    </div>
+    <div class="impact-item reveal" style="transition-delay:.07s">
+      <div class="impact-num red" data-count="7">0</div>
+      <div class="impact-label">Critical Provisions</div>
+    </div>
+    <div class="impact-item reveal" style="transition-delay:.14s">
+      <div class="impact-num gold">80+</div>
+      <div class="impact-label">Audit Red Flags</div>
+    </div>
+    <div class="impact-item reveal" style="transition-delay:.21s">
+      <div class="impact-num gold">₹1.5L Cr+</div>
+      <div class="impact-label">Fraud Value in Cases</div>
+    </div>
+    <div class="impact-item reveal" style="transition-delay:.28s">
+      <div class="impact-num" data-count="6">0</div>
+      <div class="impact-label">Real Case Studies</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ WHY AUDITMIND ═════════════════════════════ -->
+<section id="why">
+  <div class="section-inner">
+    <div class="section-label">
+      <div class="section-label-line"></div>
+      <span class="section-label-text">Why AuditMind</span>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-left reveal">
+        <h2 class="section-title">Turning <em>Regulatory Jargon</em><br>Into Audit Action</h2>
+        <p class="section-subtitle">
+          RBI circulars are dense. Enforcement actions are complex. 
+          Most compliance professionals struggle to convert regulatory text into practical audit steps — until now.
+        </p>
+
+        <blockquote class="why-quote">
+          "The gap between a regulatory circular and an audit finding is exactly where fraud hides. 
+          Closing that gap is what this platform is built for."
+        </blockquote>
+
+        <div class="why-author">
+          <div class="why-author-avatar">A</div>
+          <div>
+            <div class="why-author-name">AuditMind</div>
+            <div class="why-author-title">RBI · NBFC · Forensic Audit Specialist</div>
+          </div>
+        </div>
+
+        <div class="why-tags">
+          <span class="why-tag">RBI Regulations</span>
+          <span class="why-tag">PMLA / AML</span>
+          <span class="why-tag">NBFC Compliance</span>
+          <span class="why-tag">KYC / CDD</span>
+          <span class="why-tag">Forensic Audit</span>
+          <span class="why-tag">FIU-IND Reporting</span>
+        </div>
+      </div>
+
+      <div class="why-right reveal" style="transition-delay:.1s">
+        <div class="why-pillar">
+          <div class="why-pillar-num">01</div>
+          <div>
+            <div class="why-pillar-title">Regulation → Audit Action</div>
+            <div class="why-pillar-desc">Every article connects regulation text directly to business impact, system requirements, audit procedure, and real-world cases. Not theory — operational clarity.</div>
+          </div>
+        </div>
+        <div class="why-pillar">
+          <div class="why-pillar-num">02</div>
+          <div>
+            <div class="why-pillar-title">Written by a Practitioner</div>
+            <div class="why-pillar-desc">AuditMind is authored by a specialist in RBI regulatory analysis, NBFC compliance frameworks, and forensic audit intelligence — for those who use it daily.</div>
+          </div>
+        </div>
+        <div class="why-pillar">
+          <div class="why-pillar-num">03</div>
+          <div>
+            <div class="why-pillar-title">Real Enforcement Cases</div>
+            <div class="why-pillar-desc">Every red flag is drawn from actual RBI inspection findings and enforcement actions — DHFL, IL&FS, Sahara — making the risk tangible, not hypothetical.</div>
+          </div>
+        </div>
+        <div class="why-pillar">
+          <div class="why-pillar-num">04</div>
+          <div>
+            <div class="why-pillar-title">Forensic-Grade Detail</div>
+            <div class="why-pillar-desc">Step-by-step audit procedures with exact data requirements, so you know what to pull, what to test, and what finding to raise — before the inspector does.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ COVERAGE ══════════════════════════════════ -->
+<section id="coverage" class="coverage-section">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="section-label-line"></div>
+      <span class="section-label-text">Coverage Areas</span>
+    </div>
+    <h2 class="section-title reveal" style="transition-delay:.05s">What We <em>Cover</em></h2>
+
+    <div class="coverage-grid">
+      <div class="coverage-item reveal">
+        <span class="coverage-icon">🏦</span>
+        <div class="coverage-name">RBI Directions</div>
+        <div class="coverage-desc">Master Directions, Circulars, and FAQs decoded into audit language with provision-level analysis and enforcement context.</div>
+        <div class="coverage-tags">
+          <span class="coverage-tag">Master Directions</span>
+          <span class="coverage-tag">Circulars</span>
+          <span class="coverage-tag">FAQs</span>
+        </div>
+      </div>
+      <div class="coverage-item reveal" style="transition-delay:.05s">
+        <span class="coverage-icon">🔍</span>
+        <div class="coverage-name">KYC & AML</div>
+        <div class="coverage-desc">Customer Due Diligence, OVD verification, Video-CIP, and CKYCR — the full KYC lifecycle with 80+ red flags for auditors.</div>
+        <div class="coverage-tags">
+          <span class="coverage-tag">CDD</span>
+          <span class="coverage-tag">OVD</span>
+          <span class="coverage-tag">V-CIP</span>
+          <span class="coverage-tag">CKYCR</span>
+        </div>
+      </div>
+      <div class="coverage-item reveal" style="transition-delay:.1s">
+        <span class="coverage-icon">⚖️</span>
+        <div class="coverage-name">PMLA Framework</div>
+        <div class="coverage-desc">STR and CTR filing obligations, FIU-IND reporting timelines, tipping-off prohibition, and sanctions compliance programmes.</div>
+        <div class="coverage-tags">
+          <span class="coverage-tag">STR</span>
+          <span class="coverage-tag">CTR</span>
+          <span class="coverage-tag">FIU-IND</span>
+          <span class="coverage-tag">Sanctions</span>
+        </div>
+      </div>
+      <div class="coverage-item reveal" style="transition-delay:.05s">
+        <span class="coverage-icon">🏢</span>
+        <div class="coverage-name">NBFC Compliance</div>
+        <div class="coverage-desc">Scale-Based Regulation framework — Base, Middle, Upper, Top layer compliance with capital, governance, and audit requirements.</div>
+        <div class="coverage-tags">
+          <span class="coverage-tag">SBR</span>
+          <span class="coverage-tag">Capital Norms</span>
+          <span class="coverage-tag">Governance</span>
+        </div>
+      </div>
+      <div class="coverage-item reveal" style="transition-delay:.1s">
+        <span class="coverage-icon">🚨</span>
+        <div class="coverage-name">Forensic Audit</div>
+        <div class="coverage-desc">Red flags, case studies, and forensic reconstruction of major enforcement actions — DHFL, IL&FS, Sahara — with detection methodologies.</div>
+        <div class="coverage-tags">
+          <span class="coverage-tag">Red Flags</span>
+          <span class="coverage-tag">Case Studies</span>
+          <span class="coverage-tag">Detection</span>
+        </div>
+      </div>
+      <div class="coverage-item reveal" style="transition-delay:.15s">
+        <span class="coverage-icon">📊</span>
+        <div class="coverage-name">Audit Procedures</div>
+        <div class="coverage-desc">Step-by-step audit checklists with exact data requirements, sample queries, and exception thresholds for each regulatory provision.</div>
+        <div class="coverage-tags">
+          <span class="coverage-tag">Checklists</span>
+          <span class="coverage-tag">Data Requirements</span>
+          <span class="coverage-tag">Procedures</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FEATURED ══════════════════════════════════ -->
+<section id="featured" class="featured-section">
+  <div class="section-inner featured-inner">
+    <div class="section-label reveal">
+      <div class="section-label-line"></div>
+      <span class="section-label-text">Featured Analysis</span>
+    </div>
+    <h2 class="section-title reveal" style="transition-delay:.05s">Most Read <em>Publication</em></h2>
+
+    <div class="featured-card reveal" style="transition-delay:.1s">
+      <div class="featured-main">
+        <div class="featured-badges">
+          <span class="badge badge-gold">Featured · Most Read</span>
+          <span class="badge badge-red">7 Critical</span>
+          <span class="badge badge-high">5 High Risk</span>
+          <span class="badge badge-muted">RBI Circular · Nov 28, 2025</span>
+        </div>
+
+        <h3 class="featured-title">
+          RBI NBFC–KYC Directions 2025:<br>
+          <em>Complete Audit Intelligence Framework</em>
+        </h3>
+
+        <p class="featured-desc">
+          The definitive guide to RBI's 2025 KYC Master Direction for NBFCs. 16 provisions analyzed across 3 risk tiers 
+          with enforcement cases, red flags, and step-by-step audit procedures linking regulation → business impact → 
+          system requirements → forensic red flags.
+        </p>
+
+        <div class="featured-highlights">
+          <div class="featured-highlight">Benami accounts → DHFL ₹34,000 Cr case reconstruction</div>
+          <div class="featured-highlight">Daily sanctions screening — each missed day = separate violation</div>
+          <div class="featured-highlight">V-CIP: CERT-In VAPT mandatory + zero vendor data retention rule</div>
+          <div class="featured-highlight">June 2026 low-risk account protection deadline — blocking is itself a violation</div>
+          <div class="featured-highlight">Designated Director ≠ Principal Officer — same person = automatic violation</div>
+        </div>
+
+        <a href="article-kyc-2025.html" class="btn-primary" style="display:inline-flex;">Read Full Analysis →</a>
+      </div>
+
+      <div class="featured-sidebar">
+        <div class="featured-stat-block">
+          <div class="featured-stat-num red">7</div>
+          <div class="featured-stat-label">Critical Provisions</div>
+        </div>
+        <div class="featured-stat-block featured-meta-block">
+          <div class="featured-stat-num high">5</div>
+          <div class="featured-stat-label">High Risk Provisions</div>
+        </div>
+        <div class="featured-stat-block featured-meta-block">
+          <div class="featured-stat-num gold">80+</div>
+          <div class="featured-stat-label">Audit Red Flags</div>
+        </div>
+        <div class="featured-stat-block featured-meta-block">
+          <div class="featured-stat-num">6</div>
+          <div class="featured-stat-label">Real Cases</div>
+        </div>
+
+        <div class="featured-meta-block" style="margin-top: auto;">
+          <div class="featured-meta-label">Circular Reference</div>
+          <div class="featured-meta-value">DOR.AML.REC.No.280<br>14.01.003/2025-26</div>
+        </div>
+        <div class="featured-meta-block">
+          <div class="featured-meta-label">Applicability</div>
+          <div class="featured-meta-value">All NBFCs · All Layers</div>
+        </div>
+        <div class="featured-meta-block">
+          <div class="featured-meta-label">Updated</div>
+          <div class="featured-meta-value">December 29, 2025</div>
+        </div>
+
+        <a href="article-kyc-2025.html" class="featured-cta">Open Full Analysis →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PUBLICATIONS ══════════════════════════════ -->
+<section id="publications">
+  <div class="section-inner">
+    <div class="pubs-header">
+      <div>
+        <div class="section-label reveal" style="margin-bottom:12px">
+          <div class="section-label-line"></div>
+          <span class="section-label-text">Publication Archive</span>
+        </div>
+        <h2 class="section-title reveal" style="transition-delay:.05s;margin-bottom:0">Recent <em>Insights</em></h2>
+      </div>
+      <a href="blog.html" class="btn-outline reveal" style="transition-delay:.1s;white-space:nowrap">View All Articles →</a>
+    </div>
+
+    <div class="pubs-grid">
+      <!-- Card 1 — Live -->
+      <div class="pub-card reveal">
+        <div class="pub-card-body">
+          <div class="pub-card-top">
+            <span class="pub-card-topic">RBI · KYC · PMLA</span>
+            <span class="pub-card-status live">Live</span>
+          </div>
+          <div class="pub-card-title">RBI NBFC–KYC Directions 2025: Complete Audit Intelligence Framework</div>
+          <div class="pub-card-desc">16 regulations decoded — 7 critical, 5 high-risk, 4 moderate — with real enforcement cases (DHFL, IL&FS, Sahara), 80+ red flags and step-by-step audit procedures.</div>
+          <div class="pub-card-tags">
+            <span class="pub-card-tag">#KYC</span>
+            <span class="pub-card-tag">#NBFC</span>
+            <span class="pub-card-tag">#AML</span>
+          </div>
+        </div>
+        <div class="pub-card-footer">
+          <span class="pub-card-date">Nov 2025 · 25 min read</span>
+          <a href="article-kyc-2025.html" class="pub-card-link">Read →</a>
+        </div>
+      </div>
+
+      <!-- Card 2 — Coming Soon -->
+      <div class="pub-card reveal" style="transition-delay:.07s">
+        <div class="pub-card-body">
+          <div class="pub-card-top">
+            <span class="pub-card-topic">NBFC</span>
+            <span class="pub-card-status">Coming Soon</span>
+          </div>
+          <div class="pub-card-title">Scale-Based Regulation for NBFCs: Audit Checklist for Each Layer</div>
+          <div class="pub-card-desc">RBI's four-layer NBFC framework — Base, Middle, Upper, Top — each with distinct capital, governance and audit requirements. A complete layer-wise compliance checklist.</div>
+          <div class="pub-card-tags">
+            <span class="pub-card-tag">#NBFC</span>
+            <span class="pub-card-tag">#SBR</span>
+          </div>
+        </div>
+        <div class="pub-card-footer">
+          <span class="pub-card-date">Upcoming</span>
+          <span class="pub-card-link" style="opacity:0.4">Soon</span>
+        </div>
+      </div>
+
+      <!-- Card 3 — Coming Soon -->
+      <div class="pub-card reveal" style="transition-delay:.14s">
+        <div class="pub-card-body">
+          <div class="pub-card-top">
+            <span class="pub-card-topic">PMLA</span>
+            <span class="pub-card-status">Coming Soon</span>
+          </div>
+          <div class="pub-card-title">FIU-IND Reporting: STR, CTR & High-Value Transactions — The Complete Guide</div>
+          <div class="pub-card-desc">What triggers an STR vs. CTR? Timelines, formats, the tipping-off prohibition, and how RBI measures suppression rates in inspections.</div>
+          <div class="pub-card-tags">
+            <span class="pub-card-tag">#STR</span>
+            <span class="pub-card-tag">#FIU</span>
+            <span class="pub-card-tag">#AML</span>
+          </div>
+        </div>
+        <div class="pub-card-footer">
+          <span class="pub-card-date">Upcoming</span>
+          <span class="pub-card-link" style="opacity:0.4">Soon</span>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="pub-card reveal" style="transition-delay:.07s">
+        <div class="pub-card-body">
+          <div class="pub-card-top">
+            <span class="pub-card-topic">Forensic Audit</span>
+            <span class="pub-card-status">Coming Soon</span>
+          </div>
+          <div class="pub-card-title">DHFL Deep Dive: How ₹34,000 Crore Was Hidden Behind Fake KYC</div>
+          <div class="pub-card-desc">A forensic reconstruction of India's largest housing finance fraud — ghost borrowers, fabricated OVDs, and the audit tests that would have caught it earlier.</div>
+          <div class="pub-card-tags">
+            <span class="pub-card-tag">#DHFL</span>
+            <span class="pub-card-tag">#Forensic</span>
+          </div>
+        </div>
+        <div class="pub-card-footer">
+          <span class="pub-card-date">Upcoming</span>
+          <span class="pub-card-link" style="opacity:0.4">Soon</span>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="pub-card reveal" style="transition-delay:.14s">
+        <div class="pub-card-body">
+          <div class="pub-card-top">
+            <span class="pub-card-topic">RBI</span>
+            <span class="pub-card-status">Coming Soon</span>
+          </div>
+          <div class="pub-card-title">V-CIP Implementation Audit: The 12-Point Compliance Checklist</div>
+          <div class="pub-card-desc">CERT-In VAPT, zero vendor data retention, India-based servers, liveness detection, GPS geo-tagging — a practitioner's guide to V-CIP compliance and failure patterns.</div>
+          <div class="pub-card-tags">
+            <span class="pub-card-tag">#VCIP</span>
+            <span class="pub-card-tag">#Digital</span>
+          </div>
+        </div>
+        <div class="pub-card-footer">
+          <span class="pub-card-date">Upcoming</span>
+          <span class="pub-card-link" style="opacity:0.4">Soon</span>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="pub-card reveal" style="transition-delay:.21s">
+        <div class="pub-card-body">
+          <div class="pub-card-top">
+            <span class="pub-card-topic">Sanctions</span>
+            <span class="pub-card-status">Coming Soon</span>
+          </div>
+          <div class="pub-card-title">UNSC / UAPA Sanctions Screening: Building a Daily Compliance Programme</div>
+          <div class="pub-card-desc">Three lists, daily checks, existing portfolio re-screening, freeze-without-notice powers. How to build a sanctions compliance programme that survives RBI inspection scrutiny.</div>
+          <div class="pub-card-tags">
+            <span class="pub-card-tag">#UNSC</span>
+            <span class="pub-card-tag">#UAPA</span>
+            <span class="pub-card-tag">#Sanctions</span>
+          </div>
+        </div>
+        <div class="pub-card-footer">
+          <span class="pub-card-date">Upcoming</span>
+          <span class="pub-card-link" style="opacity:0.4">Soon</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ NEWSLETTER ════════════════════════════════ -->
+<section class="newsletter-section">
+  <div class="section-inner">
+    <div class="newsletter-inner reveal">
+      <div class="newsletter-icon">📬</div>
+      <h2 class="newsletter-title">Stay Compliance-Ready</h2>
+      <p class="newsletter-desc">
+        Get notified when new RBI circulars drop — with instant audit intelligence 
+        breakdowns delivered straight to your inbox.
+      </p>
+      <div class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="your@email.com">
+        <button class="newsletter-btn">Subscribe</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════════════ -->
+<footer id="about">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-logo">
+          <div class="footer-brand-mark">A</div>
+          <span class="footer-brand-name">AuditMind</span>
+        </div>
+        <p class="footer-brand-desc">
+          RBI regulatory intelligence and NBFC compliance analysis — turning circular text into audit action.
+        </p>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Navigation</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="article-kyc-2025.html">Latest Article</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Topics</div>
+        <ul class="footer-links">
+          <li><a href="blog.html">KYC / AML</a></li>
+          <li><a href="blog.html">PMLA Framework</a></li>
+          <li><a href="blog.html">NBFC Compliance</a></li>
+          <li><a href="blog.html">Forensic Audit</a></li>
+          <li><a href="blog.html">RBI Circulars</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Resources</div>
+        <ul class="footer-links">
+          <li><a href="https://rbi.org.in" target="_blank" rel="noopener">RBI Official Website</a></li>
+          <li><a href="https://fiuindia.gov.in" target="_blank" rel="noopener">FIU-IND Portal</a></li>
+          <li><a href="https://www.ckycindia.in" target="_blank" rel="noopener">CKYCR Portal</a></li>
+          <li><a href="https://fatf-gafi.org" target="_blank" rel="noopener">FATF Standards</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2025 AuditMind — auditmind.in</span>
+      <p class="footer-disclaimer">
+        Always refer to original RBI circulars as the definitive regulatory source. 
+        This analysis is for informational purposes and does not constitute legal or regulatory advice.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast -->
+<div class="toast" id="toast">Link copied!</div>
+
+<script>
+/* ── Theme Toggle ─────────────────────────────── */
+function toggleTheme() {
+  const html = document.documentElement;
+  const btn  = document.getElementById('themeBtn');
+  const current = html.getAttribute('data-theme') || 'dark';
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('auditmind-theme', next);
+  btn.textContent = next === 'dark' ? '☾' : '☀';
+}
+
+/* Set initial icon */
+(function(){
+  const t = localStorage.getItem('auditmind-theme') || 'dark';
+  document.getElementById('themeBtn').textContent = t === 'dark' ? '☾' : '☀';
+})();
+
+/* ── Scroll Reveal ────────────────────────────── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* ── Counter Animation ────────────────────────── */
+function animateCount(el, target, duration) {
+  let start = 0;
+  const step = target / (duration / 16);
+  const timer = setInterval(() => {
+    start = Math.min(start + step, target);
+    el.textContent = Math.floor(start);
+    if (start >= target) clearInterval(timer);
+  }, 16);
+}
+
+const countObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting && e.target.dataset.count) {
+      animateCount(e.target, parseInt(e.target.dataset.count), 1200);
+      countObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el));
+
+/* ── Newsletter ───────────────────────────────── */
+document.querySelector('.newsletter-btn').addEventListener('click', function() {
+  const input = document.querySelector('.newsletter-input');
+  if (input.value.includes('@')) {
+    this.textContent = '✓ Subscribed';
+    this.style.background = '#22c55e';
+    input.value = '';
+    setTimeout(() => {
+      this.textContent = 'Subscribe';
+      this.style.background = '';
+    }, 3000);
+  } else {
+    input.style.borderColor = 'var(--critical)';
+    setTimeout(() => input.style.borderColor = '', 1500);
+  }
+});
+
+/* ── Smooth nav ───────────────────────────────── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    if (!href || href === '#') { e.preventDefault(); return; }
+    const target = document.querySelector(href);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+<!-- ══ CHAT WIDGET ══════════════════════════════ -->
+<button class="chat-fab" id="chatFab" onclick="toggleChat()" aria-label="Open AI Chat">
+  <span id="chatFabIcon">💬</span>
+  <span class="chat-badge" id="chatBadge">1</span>
+</button>
+
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <div class="chat-header-avatar">A</div>
+    <div class="chat-header-info">
+      <div class="chat-header-name">AuditMind AI</div>
+      <div class="chat-header-status">Online · RBI Compliance Assistant</div>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+
+  <div class="chat-messages" id="chatMessages">
+    <div class="chat-msg ai">
+      <div class="chat-bubble">
+        👋 Hello! I'm AuditMind AI — ask me anything about <strong>RBI regulations, KYC/AML, NBFC compliance, PMLA, or forensic audit procedures</strong>.
+      </div>
+      <div class="chat-msg-time">Just now</div>
+    </div>
+  </div>
+
+  <div class="chat-suggestions" id="chatSuggestions">
+    <button class="chat-suggestion" onclick="sendSuggestion(this)">What is the CKYCR upload deadline?</button>
+    <button class="chat-suggestion" onclick="sendSuggestion(this)">Explain V-CIP requirements</button>
+    <button class="chat-suggestion" onclick="sendSuggestion(this)">What triggers an STR filing?</button>
+    <button class="chat-suggestion" onclick="sendSuggestion(this)">DHFL case red flags</button>
+  </div>
+
+  <div class="chat-input-row">
+    <textarea class="chat-input" id="chatInput" rows="1"
+      placeholder="Ask about RBI, KYC, NBFC, PMLA..."
+      onkeydown="handleKey(event)"
+      oninput="autoResize(this)"></textarea>
+    <button class="chat-send" id="chatSend" onclick="sendMessage()">➤</button>
+  </div>
+  <div class="chat-disclaimer">Powered by Claude · For informational use only</div>
+</div>
+
+<script>
+/* ── Chat State ───────────────────────────────── */
+let chatOpen = false;
+let chatHistory = [];
+let isLoading = false;
+
+function toggleChat() {
+  chatOpen = !chatOpen;
+  const win  = document.getElementById('chatWindow');
+  const fab  = document.getElementById('chatFab');
+  const icon = document.getElementById('chatFabIcon');
+  const badge = document.getElementById('chatBadge');
+
+  win.classList.toggle('visible', chatOpen);
+  fab.classList.toggle('open', chatOpen);
+  icon.textContent = chatOpen ? '✕' : '💬';
+  badge.style.display = chatOpen ? 'none' : 'flex';
+
+  if (chatOpen) {
+    setTimeout(() => document.getElementById('chatInput').focus(), 300);
+  }
+}
+
+function handleKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendMessage();
+  }
+}
+
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 100) + 'px';
+}
+
+function sendSuggestion(btn) {
+  document.getElementById('chatInput').value = btn.textContent;
+  document.getElementById('chatSuggestions').style.display = 'none';
+  sendMessage();
+}
+
+function getTime() {
+  return new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+}
+
+function appendMessage(role, text) {
+  const msgs = document.getElementById('chatMessages');
+  const div  = document.createElement('div');
+  div.className = 'chat-msg ' + role;
+
+  const bubble = document.createElement('div');
+  bubble.className = 'chat-bubble';
+  bubble.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+  const time = document.createElement('div');
+  time.className = 'chat-msg-time';
+  time.textContent = getTime();
+
+  div.appendChild(bubble);
+  div.appendChild(time);
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+  return div;
+}
+
+function showTyping() {
+  const msgs = document.getElementById('chatMessages');
+  const div  = document.createElement('div');
+  div.id = 'typingIndicator';
+  div.className = 'chat-typing';
+  div.innerHTML = '<span></span><span></span><span></span>';
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function hideTyping() {
+  const t = document.getElementById('typingIndicator');
+  if (t) t.remove();
+}
+
+async function sendMessage() {
+  if (isLoading) return;
+  const input = document.getElementById('chatInput');
+  const text  = input.value.trim();
+  if (!text) return;
+
+  isLoading = true;
+  input.value = '';
+  input.style.height = 'auto';
+  document.getElementById('chatSend').disabled = true;
+  document.getElementById('chatSuggestions').style.display = 'none';
+
+  appendMessage('user', text);
+  chatHistory.push({ role: 'user', content: text });
+
+  showTyping();
+
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: chatHistory }),
+    });
+
+    hideTyping();
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      appendMessage('ai', '⚠️ ' + (err.error || 'Something went wrong. Please try again.'));
+    } else {
+      const data = await res.json();
+      appendMessage('ai', data.reply);
+      chatHistory.push({ role: 'assistant', content: data.reply });
+    }
+  } catch (err) {
+    hideTyping();
+    appendMessage('ai', '⚠️ Network error. Please check your connection and try again.');
+  }
+
+  isLoading = false;
+  document.getElementById('chatSend').disabled = false;
+  document.getElementById('chatInput').focus();
+}
+</script>
+
+</body>
+</html>

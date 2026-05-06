@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — AuditMind | RBI & NBFC Compliance Intelligence</title>
+<meta name="description" content="In-depth analysis of RBI regulations, NBFC compliance frameworks, forensic audit procedures and real-world enforcement cases.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>(function(){var t=localStorage.getItem('auditmind-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
+<style>
+:root,[data-theme="dark"]{--bg:#080b12;--bg-2:#0d1220;--surface:#111827;--surface-2:#1a2236;--border:rgba(255,255,255,0.07);--border-strong:rgba(255,255,255,0.14);--text:#ede9e0;--text-2:#9aa5bf;--text-3:#5a6a82;--gold:#c9a84c;--gold-dim:rgba(201,168,76,0.12);--gold-border:rgba(201,168,76,0.25);--critical:#e53935;--critical-dim:rgba(229,57,53,0.12);--high:#e67c22;--high-dim:rgba(230,124,34,0.12);--nav-bg:rgba(8,11,18,0.94);--card-shadow:none;--btn-primary-bg:#c9a84c;--btn-primary-text:#080b12;}
+[data-theme="light"]{--bg:#f4f2ec;--bg-2:#eceae3;--surface:#ffffff;--surface-2:#f9f8f5;--border:rgba(0,0,0,0.08);--border-strong:rgba(0,0,0,0.16);--text:#0d1220;--text-2:#4a5568;--text-3:#9aa5bf;--gold:#a87c20;--gold-dim:rgba(168,124,32,0.09);--gold-border:rgba(168,124,32,0.22);--critical:#c0392b;--critical-dim:rgba(192,57,43,0.09);--high:#c0640a;--high-dim:rgba(192,100,10,0.09);--nav-bg:rgba(244,242,236,0.96);--card-shadow:0 1px 4px rgba(0,0,0,0.06);--btn-primary-bg:#0d1220;--btn-primary-text:#f4f2ec;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:background 0.4s,color 0.4s;}
+a{color:inherit;text-decoration:none;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav-bg);border-bottom:1px solid var(--border);backdrop-filter:blur(16px);}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 40px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:32px;}
+.nav-logo{display:flex;align-items:center;gap:12px;}
+.nav-logo-mark{width:36px;height:36px;background:var(--gold);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;font-size:18px;color:#080b12;}
+.nav-logo-text{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--text);}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none;}
+.nav-links a{font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-2);transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.nav-right{display:flex;align-items:center;gap:16px;}
+.theme-toggle{width:40px;height:40px;border-radius:50%;border:1px solid var(--border-strong);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--text-2);transition:all 0.2s;}
+.theme-toggle:hover{border-color:var(--gold);color:var(--gold);}
+.btn-nav{font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;background:var(--btn-primary-bg);color:var(--btn-primary-text);padding:10px 20px;border-radius:4px;border:none;cursor:pointer;transition:opacity 0.2s;}
+
+/* Page Header */
+.page-header{padding:120px 40px 64px;border-bottom:1px solid var(--border);background:var(--bg-2);}
+.page-header-inner{max-width:1280px;margin:0 auto;}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.1em;color:var(--text-3);text-transform:uppercase;margin-bottom:24px;}
+.breadcrumb a{color:var(--text-3);transition:color 0.2s;}
+.breadcrumb a:hover{color:var(--gold);}
+.breadcrumb-sep{color:var(--text-3);}
+.page-title{font-family:'Playfair Display',serif;font-size:clamp(36px,4vw,56px);font-weight:400;line-height:1.15;letter-spacing:-0.02em;color:var(--text);margin-bottom:16px;}
+.page-title em{font-style:italic;color:var(--text-2);}
+.page-desc{font-size:16px;line-height:1.7;color:var(--text-2);max-width:580px;}
+
+/* Filter bar */
+.filter-bar{border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:68px;z-index:50;}
+.filter-inner{max-width:1280px;margin:0 auto;padding:0 40px;display:flex;align-items:center;gap:8px;overflow-x:auto;height:52px;}
+.filter-btn{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;padding:6px 14px;border-radius:3px;border:1px solid var(--border);background:transparent;color:var(--text-3);cursor:pointer;white-space:nowrap;transition:all 0.15s;}
+.filter-btn:hover,.filter-btn.active{background:var(--gold-dim);color:var(--gold);border-color:var(--gold-border);}
+
+/* Articles grid */
+.articles-section{padding:64px 40px;max-width:1280px;margin:0 auto;}
+
+/* Featured big card */
+.article-featured{display:grid;grid-template-columns:1fr 320px;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--surface);margin-bottom:48px;box-shadow:var(--card-shadow);transition:box-shadow 0.2s;}
+.article-featured:hover{box-shadow:0 8px 32px rgba(0,0,0,0.15);}
+.af-main{padding:44px;}
+.af-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+.badge{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;padding:5px 10px;border-radius:3px;}
+.badge-gold{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border);}
+.badge-red{background:var(--critical-dim);color:var(--critical);border:1px solid rgba(229,57,53,0.25);}
+.badge-high{background:var(--high-dim);color:var(--high);border:1px solid rgba(230,124,34,0.25);}
+.badge-live{background:rgba(34,197,94,0.1);color:#22c55e;border:1px solid rgba(34,197,94,0.3);}
+.badge-soon{background:var(--border);color:var(--text-3);border:1px solid var(--border);}
+.af-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:400;line-height:1.3;color:var(--text);margin-bottom:16px;}
+.af-title em{font-style:italic;}
+.af-desc{font-size:14px;line-height:1.75;color:var(--text-2);margin-bottom:28px;}
+.af-highlights{margin-bottom:28px;}
+.af-highlight{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text-2);}
+.af-highlight:first-child{border-top:1px solid var(--border);}
+.af-highlight::before{content:'→';color:var(--gold);flex-shrink:0;}
+.af-cta{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:0.04em;background:var(--gold);color:#080b12;padding:12px 24px;border-radius:4px;transition:opacity 0.2s;}
+.af-cta:hover{opacity:0.88;}
+.af-sidebar{padding:32px 28px;background:var(--surface-2);border-left:1px solid var(--border);display:flex;flex-direction:column;gap:24px;}
+.af-stat-num{font-family:'Playfair Display',serif;font-size:40px;font-weight:700;line-height:1;}
+.af-stat-num.red{color:var(--critical);}
+.af-stat-num.high{color:var(--high);}
+.af-stat-num.gold{color:var(--gold);}
+.af-stat-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-top:4px;}
+.af-meta{padding-top:20px;border-top:1px solid var(--border);}
+.af-meta-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:4px;}
+.af-meta-val{font-size:12px;color:var(--text-2);}
+
+/* Articles grid */
+.articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.article-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s;box-shadow:var(--card-shadow);}
+.article-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.15);}
+.article-card.coming-soon{opacity:0.7;}
+.ac-body{padding:28px;}
+.ac-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.ac-topic{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);}
+.ac-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;line-height:1.35;color:var(--text);margin-bottom:10px;}
+.ac-desc{font-size:13px;line-height:1.65;color:var(--text-2);margin-bottom:18px;}
+.ac-tags{display:flex;gap:6px;flex-wrap:wrap;}
+.ac-tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.06em;color:var(--text-3);padding:3px 8px;border:1px solid var(--border);border-radius:2px;}
+.ac-footer{padding:14px 28px;border-top:1px solid var(--border);background:var(--surface-2);display:flex;align-items:center;justify-content:space-between;}
+.ac-date{font-size:12px;color:var(--text-3);}
+.ac-link{font-size:12px;font-weight:600;color:var(--gold);display:flex;align-items:center;gap:4px;transition:gap 0.15s;}
+.ac-link:hover{gap:8px;}
+.ac-link.disabled{color:var(--text-3);pointer-events:none;}
+
+/* Coming soon banner */
+.coming-banner{margin-top:64px;padding:40px;background:var(--surface);border:1px solid var(--border);border-radius:10px;text-align:center;}
+.coming-banner h3{font-family:'Playfair Display',serif;font-size:24px;font-weight:400;color:var(--text);margin-bottom:8px;}
+.coming-banner p{font-size:14px;color:var(--text-2);margin-bottom:24px;}
+.newsletter-form{display:flex;gap:10px;max-width:440px;margin:0 auto;}
+.newsletter-input{flex:1;padding:12px 16px;background:var(--bg);border:1px solid var(--border-strong);border-radius:4px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);outline:none;}
+.newsletter-input:focus{border-color:var(--gold);}
+.newsletter-input::placeholder{color:var(--text-3);}
+.newsletter-btn{padding:12px 20px;background:var(--gold);color:#080b12;border:none;border-radius:4px;font-size:13px;font-weight:600;cursor:pointer;transition:opacity 0.2s;white-space:nowrap;}
+.newsletter-btn:hover{opacity:0.88;}
+
+footer{background:var(--bg-2);border-top:1px solid var(--border);padding:40px;text-align:center;}
+.footer-logo{display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:16px;}
+.footer-mark{width:32px;height:32px;background:var(--gold);border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;font-size:16px;color:#080b12;}
+.footer-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:var(--text);}
+.footer-text{font-size:12px;color:var(--text-3);}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+@media(max-width:900px){.article-featured{grid-template-columns:1fr;}.af-sidebar{border-left:none;border-top:1px solid var(--border);flex-direction:row;flex-wrap:wrap;}.articles-grid{grid-template-columns:1fr;}.nav-links{display:none;}.nav-inner{padding:0 20px;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-mark">A</div>
+      <span class="nav-logo-text">AuditMind</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#why">Why AuditMind</a></li>
+      <li><a href="index.html#coverage">Coverage</a></li>
+      <li><a href="blog.html" class="active">Publications</a></li>
+      <li><a href="index.html#about">About</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">☾</button>
+      <a href="blog.html" class="btn-nav">Read Blogs</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Page Header -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep">›</span>
+      <span>Blog</span>
+    </div>
+    <h1 class="page-title">Regulatory <em>Intelligence</em><br>& Audit Insights</h1>
+    <p class="page-desc">In-depth analysis of RBI regulations, NBFC compliance frameworks, forensic audit procedures and real-world enforcement cases.</p>
+  </div>
+</div>
+
+<!-- Filter Bar -->
+<div class="filter-bar">
+  <div class="filter-inner">
+    <button class="filter-btn active" onclick="filterArticles('all', this)">All Topics</button>
+    <button class="filter-btn" onclick="filterArticles('kyc', this)">KYC / AML</button>
+    <button class="filter-btn" onclick="filterArticles('pmla', this)">PMLA</button>
+    <button class="filter-btn" onclick="filterArticles('nbfc', this)">NBFC</button>
+    <button class="filter-btn" onclick="filterArticles('forensic', this)">Forensic Audit</button>
+    <button class="filter-btn" onclick="filterArticles('rbi', this)">RBI Circulars</button>
+  </div>
+</div>
+
+<!-- Articles -->
+<div class="articles-section">
+
+  <!-- Featured Article -->
+  <div class="article-featured reveal" data-topic="kyc pmla nbfc rbi">
+    <div class="af-main">
+      <div class="af-badges">
+        <span class="badge badge-gold">Featured · Most Read</span>
+        <span class="badge badge-live">Live</span>
+        <span class="badge badge-red">7 Critical</span>
+        <span class="badge badge-high">5 High Risk</span>
+      </div>
+      <h2 class="af-title">RBI NBFC–KYC Directions 2025:<br><em>Complete Audit Intelligence Framework</em></h2>
+      <p class="af-desc">The definitive guide to RBI's 2025 KYC Master Direction for NBFCs. 16 provisions analyzed across 3 risk tiers with enforcement cases, red flags, and step-by-step audit procedures linking regulation → business impact → system requirements → forensic red flags.</p>
+      <div class="af-highlights">
+        <div class="af-highlight">Benami accounts → DHFL ₹34,000 Cr case reconstruction</div>
+        <div class="af-highlight">Daily sanctions screening — each missed day = separate violation</div>
+        <div class="af-highlight">V-CIP: CERT-In VAPT mandatory + zero vendor data retention</div>
+        <div class="af-highlight">June 2026 low-risk account protection deadline</div>
+        <div class="af-highlight">Designated Director ≠ Principal Officer — same person = automatic violation</div>
+      </div>
+      <a href="article-kyc-2025.html" class="af-cta">Read Full Analysis →</a>
+    </div>
+    <div class="af-sidebar">
+      <div><div class="af-stat-num red">7</div><div class="af-stat-label">Critical Provisions</div></div>
+      <div><div class="af-stat-num high">5</div><div class="af-stat-label">High Risk</div></div>
+      <div><div class="af-stat-num gold">80+</div><div class="af-stat-label">Red Flags</div></div>
+      <div><div class="af-stat-num">6</div><div class="af-stat-label">Real Cases</div></div>
+      <div class="af-meta"><div class="af-meta-label">Circular</div><div class="af-meta-val">DOR.AML.REC.No.280</div></div>
+      <div class="af-meta"><div class="af-meta-label">Published</div><div class="af-meta-val">Nov 28, 2025</div></div>
+      <div class="af-meta"><div class="af-meta-label">Read time</div><div class="af-meta-val">25 min</div></div>
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <div class="articles-grid">
+
+    <div class="article-card coming-soon reveal" data-topic="nbfc" style="transition-delay:.07s">
+      <div class="ac-body">
+        <div class="ac-top"><span class="ac-topic">NBFC</span><span class="badge badge-soon">Coming Soon</span></div>
+        <div class="ac-title">Scale-Based Regulation for NBFCs: Audit Checklist for Each Layer</div>
+        <div class="ac-desc">RBI's four-layer NBFC framework — Base, Middle, Upper, Top — each with distinct capital, governance and audit requirements.</div>
+        <div class="ac-tags"><span class="ac-tag">#NBFC</span><span class="ac-tag">#SBR</span></div>
+      </div>
+      <div class="ac-footer"><span class="ac-date">Upcoming</span><span class="ac-link disabled">Coming Soon</span></div>
+    </div>
+
+    <div class="article-card coming-soon reveal" data-topic="pmla" style="transition-delay:.14s">
+      <div class="ac-body">
+        <div class="ac-top"><span class="ac-topic">PMLA</span><span class="badge badge-soon">Coming Soon</span></div>
+        <div class="ac-title">FIU-IND Reporting: STR, CTR & High-Value Transactions — The Complete Guide</div>
+        <div class="ac-desc">What triggers an STR vs. CTR? Timelines, formats, the tipping-off prohibition, and how RBI measures suppression rates.</div>
+        <div class="ac-tags"><span class="ac-tag">#STR</span><span class="ac-tag">#FIU</span><span class="ac-tag">#AML</span></div>
+      </div>
+      <div class="ac-footer"><span class="ac-date">Upcoming</span><span class="ac-link disabled">Coming Soon</span></div>
+    </div>
+
+    <div class="article-card coming-soon reveal" data-topic="forensic" style="transition-delay:.21s">
+      <div class="ac-body">
+        <div class="ac-top"><span class="ac-topic">Forensic Audit</span><span class="badge badge-soon">Coming Soon</span></div>
+        <div class="ac-title">DHFL Deep Dive: How ₹34,000 Crore Was Hidden Behind Fake KYC</div>
+        <div class="ac-desc">A forensic reconstruction of India's largest housing finance fraud — ghost borrowers, fabricated OVDs, and the audit tests that would have caught it.</div>
+        <div class="ac-tags"><span class="ac-tag">#DHFL</span><span class="ac-tag">#Forensic</span></div>
+      </div>
+      <div class="ac-footer"><span class="ac-date">Upcoming</span><span class="ac-link disabled">Coming Soon</span></div>
+    </div>
+
+    <div class="article-card coming-soon reveal" data-topic="rbi kyc" style="transition-delay:.07s">
+      <div class="ac-body">
+        <div class="ac-top"><span class="ac-topic">RBI</span><span class="badge badge-soon">Coming Soon</span></div>
+        <div class="ac-title">V-CIP Implementation Audit: The 12-Point Compliance Checklist</div>
+        <div class="ac-desc">CERT-In VAPT, zero vendor data retention, India-based servers, liveness detection, GPS geo-tagging — a practitioner's guide to V-CIP compliance.</div>
+        <div class="ac-tags"><span class="ac-tag">#VCIP</span><span class="ac-tag">#Digital</span></div>
+      </div>
+      <div class="ac-footer"><span class="ac-date">Upcoming</span><span class="ac-link disabled">Coming Soon</span></div>
+    </div>
+
+    <div class="article-card coming-soon reveal" data-topic="pmla rbi" style="transition-delay:.14s">
+      <div class="ac-body">
+        <div class="ac-top"><span class="ac-topic">Sanctions</span><span class="badge badge-soon">Coming Soon</span></div>
+        <div class="ac-title">UNSC / UAPA Sanctions Screening: Building a Daily Compliance Programme</div>
+        <div class="ac-desc">Three lists, daily checks, existing portfolio re-screening, freeze-without-notice powers. How to build a sanctions programme that survives RBI inspection.</div>
+        <div class="ac-tags"><span class="ac-tag">#UNSC</span><span class="ac-tag">#UAPA</span><span class="ac-tag">#Sanctions</span></div>
+      </div>
+      <div class="ac-footer"><span class="ac-date">Upcoming</span><span class="ac-link disabled">Coming Soon</span></div>
+    </div>
+
+    <div class="article-card coming-soon reveal" data-topic="nbfc rbi" style="transition-delay:.21s">
+      <div class="ac-body">
+        <div class="ac-top"><span class="ac-topic">NBFC</span><span class="badge badge-soon">Coming Soon</span></div>
+        <div class="ac-title">RBI Inspection Playbook: What Inspectors Test and How to Prepare</div>
+        <div class="ac-desc">A behind-the-scenes look at RBI's NBFC inspection methodology — common findings, penalty patterns, and a pre-inspection readiness checklist.</div>
+        <div class="ac-tags"><span class="ac-tag">#RBI</span><span class="ac-tag">#Inspection</span></div>
+      </div>
+      <div class="ac-footer"><span class="ac-date">Upcoming</span><span class="ac-link disabled">Coming Soon</span></div>
+    </div>
+
+  </div>
+
+  <!-- Newsletter -->
+  <div class="coming-banner reveal" style="transition-delay:.1s">
+    <h3>More analyses coming soon</h3>
+    <p>Subscribe to get notified when new RBI circular breakdowns are published.</p>
+    <div class="newsletter-form">
+      <input type="email" class="newsletter-input" placeholder="your@email.com">
+      <button class="newsletter-btn" onclick="subscribe(this)">Notify Me</button>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">
+    <div class="footer-mark">A</div>
+    <span class="footer-name">AuditMind</span>
+  </div>
+  <p class="footer-text">© 2025 AuditMind · auditmind.in · For professional compliance use only</p>
+</footer>
+
+<script>
+function toggleTheme(){const h=document.documentElement;const t=h.getAttribute('data-theme')||'dark';const n=t==='dark'?'light':'dark';h.setAttribute('data-theme',n);localStorage.setItem('auditmind-theme',n);document.getElementById('themeBtn').textContent=n==='dark'?'☾':'☀';}
+(function(){const t=localStorage.getItem('auditmind-theme')||'dark';document.getElementById('themeBtn').textContent=t==='dark'?'☾':'☀';})();
+
+function filterArticles(topic, btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('[data-topic]').forEach(el=>{
+    if(topic==='all'||el.dataset.topic.includes(topic)){el.style.display='';el.style.opacity='1';}
+    else{el.style.display='none';}
+  });
+}
+
+function subscribe(btn){
+  const input=btn.previousElementSibling;
+  if(input.value.includes('@')){btn.textContent='✓ Subscribed';btn.style.background='#22c55e';input.value='';setTimeout(()=>{btn.textContent='Notify Me';btn.style.background='';},3000);}
+  else{input.style.borderColor='var(--critical)';setTimeout(()=>input.style.borderColor='',1500);}
+}
+
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

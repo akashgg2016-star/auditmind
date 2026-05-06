@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RBI NBFC–KYC Directions 2025: Complete Audit Intelligence Framework — AuditMind</title>
+<meta name="description" content="16 regulations decoded across 3 risk tiers with enforcement cases, 80+ red flags, and step-by-step audit procedures for RBI's November 2025 KYC Master Direction.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>(function(){var t=localStorage.getItem('auditmind-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
+<style>
+:root,[data-theme="dark"]{--bg:#080b12;--bg-2:#0d1220;--surface:#111827;--surface-2:#1a2236;--border:rgba(255,255,255,0.07);--border-strong:rgba(255,255,255,0.14);--text:#ede9e0;--text-2:#9aa5bf;--text-3:#5a6a82;--gold:#c9a84c;--gold-dim:rgba(201,168,76,0.12);--gold-border:rgba(201,168,76,0.25);--critical:#e53935;--critical-dim:rgba(229,57,53,0.12);--high:#e67c22;--high-dim:rgba(230,124,34,0.12);--moderate:#d4ac0d;--moderate-dim:rgba(212,172,13,0.1);--nav-bg:rgba(8,11,18,0.94);--btn-primary-bg:#c9a84c;--btn-primary-text:#080b12;}
+[data-theme="light"]{--bg:#f4f2ec;--bg-2:#eceae3;--surface:#ffffff;--surface-2:#f9f8f5;--border:rgba(0,0,0,0.08);--border-strong:rgba(0,0,0,0.16);--text:#0d1220;--text-2:#4a5568;--text-3:#9aa5bf;--gold:#a87c20;--gold-dim:rgba(168,124,32,0.09);--gold-border:rgba(168,124,32,0.22);--critical:#c0392b;--critical-dim:rgba(192,57,43,0.09);--high:#c0640a;--high-dim:rgba(192,100,10,0.09);--moderate:#8a6d00;--moderate-dim:rgba(138,109,0,0.08);--nav-bg:rgba(244,242,236,0.96);--btn-primary-bg:#0d1220;--btn-primary-text:#f4f2ec;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:background 0.4s,color 0.4s;}
+a{color:inherit;text-decoration:none;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav-bg);border-bottom:1px solid var(--border);backdrop-filter:blur(16px);}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 40px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:32px;}
+.nav-logo{display:flex;align-items:center;gap:12px;}
+.nav-logo-mark{width:36px;height:36px;background:var(--gold);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;font-size:18px;color:#080b12;}
+.nav-logo-text{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--text);}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none;}
+.nav-links a{font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-2);transition:color 0.2s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-right{display:flex;align-items:center;gap:16px;}
+.theme-toggle{width:40px;height:40px;border-radius:50%;border:1px solid var(--border-strong);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--text-2);transition:all 0.2s;}
+.theme-toggle:hover{border-color:var(--gold);color:var(--gold);}
+.btn-nav{font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;background:var(--btn-primary-bg);color:var(--btn-primary-text);padding:10px 20px;border-radius:4px;border:none;cursor:pointer;}
+
+/* Layout */
+.article-layout{display:grid;grid-template-columns:1fr 300px;gap:0;max-width:1280px;margin:0 auto;padding:100px 40px 80px;}
+.article-main{padding-right:60px;border-right:1px solid var(--border);}
+.article-sidebar{padding-left:40px;position:sticky;top:100px;height:fit-content;}
+
+/* Article header */
+.breadcrumb{display:flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.1em;color:var(--text-3);text-transform:uppercase;margin-bottom:28px;}
+.breadcrumb a{color:var(--text-3);transition:color 0.2s;}
+.breadcrumb a:hover{color:var(--gold);}
+
+.article-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+.badge{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;padding:5px 10px;border-radius:3px;}
+.badge-gold{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border);}
+.badge-red{background:var(--critical-dim);color:var(--critical);border:1px solid rgba(229,57,53,0.25);}
+.badge-high{background:var(--high-dim);color:var(--high);border:1px solid rgba(230,124,34,0.25);}
+
+.article-title{font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,42px);font-weight:400;line-height:1.2;letter-spacing:-0.01em;color:var(--text);margin-bottom:20px;}
+.article-title em{font-style:italic;}
+
+.article-meta-row{display:flex;align-items:center;gap:24px;padding:16px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:32px;flex-wrap:wrap;}
+.article-meta-item{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.06em;color:var(--text-3);}
+.article-meta-item strong{color:var(--text-2);}
+
+.article-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:40px;}
+.article-stat{background:var(--surface);padding:16px;text-align:center;}
+.article-stat-num{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;line-height:1;display:block;}
+.article-stat-num.red{color:var(--critical);}
+.article-stat-num.high{color:var(--high);}
+.article-stat-num.gold{color:var(--gold);}
+.article-stat-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-3);margin-top:4px;display:block;}
+
+/* Alert box */
+.alert-box{background:rgba(230,124,34,0.08);border:1px solid rgba(230,124,34,0.25);border-radius:6px;padding:20px 24px;margin-bottom:32px;display:flex;gap:14px;}
+.alert-icon{font-size:18px;flex-shrink:0;margin-top:2px;}
+.alert-content{font-size:14px;line-height:1.7;color:var(--text-2);}
+.alert-content strong{color:var(--text);}
+
+/* Body content */
+.article-body h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:600;color:var(--text);margin:48px 0 16px;padding-top:48px;border-top:1px solid var(--border);}
+.article-body h2:first-child{margin-top:0;padding-top:0;border-top:none;}
+.article-body h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--text);margin:28px 0 12px;}
+.article-body p{font-size:15px;line-height:1.8;color:var(--text-2);margin-bottom:18px;}
+.article-body strong{color:var(--text);font-weight:600;}
+.article-body ul,.article-body ol{padding-left:20px;margin-bottom:18px;}
+.article-body li{font-size:15px;line-height:1.8;color:var(--text-2);margin-bottom:6px;}
+
+/* Provision card */
+.provision{background:var(--surface);border:1px solid var(--border);border-radius:8px;margin-bottom:20px;overflow:hidden;}
+.provision-header{padding:20px 24px;display:flex;align-items:flex-start;gap:16px;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s;}
+.provision-header:hover{background:var(--surface-2);}
+.provision-badge{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.provision-badge.critical{background:var(--critical-dim);border:1px solid rgba(229,57,53,0.3);}
+.provision-badge.high{background:var(--high-dim);border:1px solid rgba(230,124,34,0.3);}
+.provision-badge.moderate{background:var(--moderate-dim);border:1px solid rgba(212,172,13,0.3);}
+.provision-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.provision-ref{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;color:var(--text-3);}
+.provision-risk{margin-left:auto;flex-shrink:0;}
+.risk-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border-radius:3px;}
+.risk-label.critical{background:var(--critical-dim);color:var(--critical);border:1px solid rgba(229,57,53,0.25);}
+.risk-label.high{background:var(--high-dim);color:var(--high);border:1px solid rgba(230,124,34,0.25);}
+.risk-label.moderate{background:var(--moderate-dim);color:var(--moderate);border:1px solid rgba(212,172,13,0.25);}
+.provision-body{padding:24px;display:none;}
+.provision-body.open{display:block;}
+.provision-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:16px;}
+.provision-section-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:10px;}
+.provision-item{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--text-2);margin-bottom:8px;line-height:1.6;}
+.provision-item::before{content:'→';color:var(--gold);flex-shrink:0;margin-top:1px;}
+.provision-red-flag{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--text-2);margin-bottom:8px;line-height:1.6;}
+.provision-red-flag::before{content:'🚩';flex-shrink:0;font-size:12px;}
+
+/* Case study */
+.case-study{background:var(--surface-2);border:1px solid var(--border);border-left:3px solid var(--critical);border-radius:0 8px 8px 0;padding:24px;margin:24px 0;}
+.case-study-title{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--critical);margin-bottom:8px;}
+.case-study h4{font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:var(--text);margin-bottom:10px;}
+.case-study p{font-size:13px;line-height:1.7;color:var(--text-2);}
+
+/* Key takeaways */
+.takeaways{background:var(--surface);border:1px solid var(--gold-border);border-radius:8px;padding:28px;margin:40px 0;}
+.takeaways-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.takeaway{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--border);font-size:14px;line-height:1.7;color:var(--text-2);}
+.takeaway:last-child{border-bottom:none;}
+.takeaway-num{font-family:'DM Mono',monospace;font-size:12px;color:var(--gold);flex-shrink:0;font-weight:600;min-width:20px;}
+
+/* Sidebar */
+.sidebar-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:24px;margin-bottom:20px;}
+.sidebar-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:16px;}
+.sidebar-stat{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.sidebar-stat:last-child{border-bottom:none;}
+.sidebar-stat-label{color:var(--text-2);}
+.sidebar-stat-val{font-weight:600;color:var(--text);}
+.sidebar-stat-val.red{color:var(--critical);}
+.sidebar-stat-val.high{color:var(--high);}
+.sidebar-stat-val.gold{color:var(--gold);}
+.toc-link{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-2);padding:7px 0;border-bottom:1px solid var(--border);transition:color 0.15s;cursor:pointer;}
+.toc-link:last-child{border-bottom:none;}
+.toc-link:hover{color:var(--gold);}
+.toc-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.toc-dot.red{background:var(--critical);}
+.toc-dot.high{background:var(--high);}
+.toc-dot.mod{background:var(--moderate);}
+.share-btn{display:flex;align-items:center;gap:8px;width:100%;padding:10px 14px;background:var(--surface-2);border:1px solid var(--border);border-radius:4px;color:var(--text-2);font-size:13px;cursor:pointer;margin-bottom:8px;transition:border-color 0.15s;font-family:'DM Sans',sans-serif;}
+.share-btn:hover{border-color:var(--gold);color:var(--gold);}
+.disclaimer{font-size:11px;line-height:1.6;color:var(--text-3);padding:16px;background:var(--surface-2);border-radius:6px;border:1px solid var(--border);}
+
+footer{background:var(--bg-2);border-top:1px solid var(--border);padding:40px;text-align:center;margin-top:80px;}
+.footer-text{font-size:12px;color:var(--text-3);}
+.footer-logo{display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:12px;}
+.footer-mark{width:32px;height:32px;background:var(--gold);border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;font-size:16px;color:#080b12;}
+.footer-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:var(--text);}
+
+@media(max-width:900px){.article-layout{grid-template-columns:1fr;padding:90px 20px 60px;}.article-main{padding-right:0;border-right:none;border-bottom:1px solid var(--border);padding-bottom:40px;margin-bottom:40px;}.article-sidebar{padding-left:0;position:static;}.nav-links{display:none;}.nav-inner{padding:0 20px;}.article-stats{grid-template-columns:repeat(3,1fr);}.provision-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-mark">A</div>
+      <span class="nav-logo-text">AuditMind</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#why">Why AuditMind</a></li>
+      <li><a href="index.html#coverage">Coverage</a></li>
+      <li><a href="blog.html">Publications</a></li>
+      <li><a href="index.html#about">About</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">☾</button>
+      <a href="blog.html" class="btn-nav">All Articles</a>
+    </div>
+  </div>
+</nav>
+
+<div class="article-layout">
+
+  <!-- MAIN CONTENT -->
+  <div class="article-main">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> ›
+      <a href="blog.html">Blog</a> ›
+      <span>RBI NBFC–KYC 2025</span>
+    </div>
+
+    <div class="article-badges">
+      <span class="badge badge-gold">Featured · Most Read</span>
+      <span class="badge badge-red">RBI Circular</span>
+      <span class="badge badge-high">PMLA · NBFC · Forensic Audit</span>
+    </div>
+
+    <h1 class="article-title">RBI NBFC–KYC Directions 2025: <em>Complete Audit Intelligence</em> Framework</h1>
+
+    <div class="article-meta-row">
+      <span class="article-meta-item"><strong>Author:</strong> AuditMind</span>
+      <span class="article-meta-item"><strong>Published:</strong> November 28, 2025</span>
+      <span class="article-meta-item"><strong>Updated:</strong> December 29, 2025</span>
+      <span class="article-meta-item"><strong>Read:</strong> 25 min</span>
+    </div>
+
+    <div class="article-stats">
+      <div class="article-stat"><span class="article-stat-num red">7</span><span class="article-stat-label">Critical</span></div>
+      <div class="article-stat"><span class="article-stat-num high">5</span><span class="article-stat-label">High Risk</span></div>
+      <div class="article-stat"><span class="article-stat-num gold">80+</span><span class="article-stat-label">Red Flags</span></div>
+      <div class="article-stat"><span class="article-stat-num">6</span><span class="article-stat-label">Real Cases</span></div>
+      <div class="article-stat"><span class="article-stat-num">16</span><span class="article-stat-label">Regulations</span></div>
+    </div>
+
+    <div class="alert-box">
+      <span class="alert-icon">⚠️</span>
+      <div class="alert-content">These directions carry <strong>criminal liability under PMLA</strong> for Principal Officers and Directors. Each day of non-compliance can constitute a separate violation. RBI inspection teams are actively testing these provisions in 2025–26.</div>
+    </div>
+
+    <div class="article-body">
+
+      <p>The Reserve Bank of India issued its comprehensive <strong>NBFC–Know Your Customer Directions, 2025</strong> on November 28, 2025, subsequently updated on December 29, 2025. This Master Direction consolidates and supersedes all prior KYC instructions applicable to Non-Banking Financial Companies — representing the most significant overhaul of NBFC KYC compliance in recent years.</p>
+
+      <p>This analysis translates every provision into the language auditors speak: what to test, what data to pull, what red flags signal a problem, and what real-world failures demonstrate the consequences of non-compliance.</p>
+
+      <!-- TAKEAWAYS -->
+      <div class="takeaways">
+        <div class="takeaways-title">📌 Key Takeaways</div>
+        <div class="takeaway"><span class="takeaway-num">1.</span><span>Sanctions screening is <strong>daily — not monthly, not at onboarding.</strong> Each missed day = separate violation.</span></div>
+        <div class="takeaway"><span class="takeaway-num">2.</span><span><strong>Blocking low-risk accounts before June 30, 2026 is itself a violation</strong> — even if KYC is overdue.</span></div>
+        <div class="takeaway"><span class="takeaway-num">3.</span><span>V-CIP vendor must retain <strong>zero data.</strong> Most fintech V-CIP vendors currently retain video data — a direct RBI violation.</span></div>
+        <div class="takeaway"><span class="takeaway-num">4.</span><span><strong>Designated Director ≠ Principal Officer.</strong> Same person holding both roles = automatic regulatory violation.</span></div>
+        <div class="takeaway"><span class="takeaway-num">5.</span><span>CKYCR upload within <strong>10 days</strong> — not in weekly batches. Check your CKYCR upload compliance rate.</span></div>
+      </div>
+
+      <!-- CRITICAL PROVISIONS -->
+      <h2>🔴 Critical Provisions (Risk Tier 1)</h2>
+      <p>These 7 provisions carry the highest enforcement risk — criminal liability under PMLA, daily penalty exposure, and direct inspection scrutiny.</p>
+
+      <div class="provision">
+        <div class="provision-header" onclick="toggleProvision(this)">
+          <div class="provision-badge critical">🔴</div>
+          <div>
+            <div class="provision-title">Benami / Ghost Account Detection</div>
+            <div class="provision-ref">Regulation 3 · Section 4(a)</div>
+          </div>
+          <div class="provision-risk"><span class="risk-label critical">Critical</span></div>
+        </div>
+        <div class="provision-body">
+          <div class="provision-grid">
+            <div>
+              <div class="provision-section-title">Audit Procedure</div>
+              <div class="provision-item">Pull complete new account list for last 12 months</div>
+              <div class="provision-item">Cross-reference introducer names against existing customer database</div>
+              <div class="provision-item">Flag duplicate address + different PAN combinations</div>
+              <div class="provision-item">Test for accounts with no transactions within 90 days of opening</div>
+              <div class="provision-item">Check video/audio recordings for V-CIP — match face to OVD</div>
+            </div>
+            <div>
+              <div class="provision-section-title">Red Flags</div>
+              <div class="provision-red-flag">Multiple accounts sharing same mobile number or email</div>
+              <div class="provision-red-flag">Introducer linked to unusually high number of new accounts</div>
+              <div class="provision-red-flag">OVD address differs from GPS location captured during V-CIP</div>
+              <div class="provision-red-flag">Account opened same day as large credit — no relationship history</div>
+            </div>
+          </div>
+          <div class="case-study">
+            <div class="case-study-title">Enforcement Case</div>
+            <h4>DHFL — ₹34,000 Crore Benami Account Fraud</h4>
+            <p>DHFL created approximately 2.6 lakh fictitious borrower accounts using real names and addresses of existing customers without their knowledge. Loans were disbursed to these ghost borrowers and funds diverted to promoter entities. The "bungalow project" — a cluster of fake accounts in Bandra, Mumbai — was the primary vehicle. Key detection failure: no address verification field visits, no introducer verification, batch CKYCR uploads masking individual account anomalies.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="provision">
+        <div class="provision-header" onclick="toggleProvision(this)">
+          <div class="provision-badge critical">🔴</div>
+          <div>
+            <div class="provision-title">Daily Sanctions Screening</div>
+            <div class="provision-ref">Regulation 9 · Section 12(b)</div>
+          </div>
+          <div class="provision-risk"><span class="risk-label critical">Critical</span></div>
+        </div>
+        <div class="provision-body">
+          <div class="provision-grid">
+            <div>
+              <div class="provision-section-title">Audit Procedure</div>
+              <div class="provision-item">Request sanctions screening system logs for last 90 days</div>
+              <div class="provision-item">Verify screening is run against UNSC, UAPA, and internal PEP lists daily</div>
+              <div class="provision-item">Check that new list updates are integrated within 24 hours of UNSC publication</div>
+              <div class="provision-item">Confirm existing portfolio is re-screened — not just new customers</div>
+              <div class="provision-item">Verify escalation matrix and freeze protocol exists and has been tested</div>
+            </div>
+            <div>
+              <div class="provision-section-title">Red Flags</div>
+              <div class="provision-red-flag">Screening logs show gaps — even one missed day = separate violation</div>
+              <div class="provision-red-flag">Only new customers screened, existing portfolio excluded</div>
+              <div class="provision-red-flag">No documented process for handling UNSC list updates</div>
+              <div class="provision-red-flag">Screening vendor confirms weekly batch runs, not daily</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="provision">
+        <div class="provision-header" onclick="toggleProvision(this)">
+          <div class="provision-badge critical">🔴</div>
+          <div>
+            <div class="provision-title">CDD Before Account Opening</div>
+            <div class="provision-ref">Regulation 5 · Section 6</div>
+          </div>
+          <div class="provision-risk"><span class="risk-label critical">Critical</span></div>
+        </div>
+        <div class="provision-body">
+          <div class="provision-grid">
+            <div>
+              <div class="provision-section-title">Audit Procedure</div>
+              <div class="provision-item">Pull system timestamps: KYC completion vs. account activation</div>
+              <div class="provision-item">Test sample of 50 new accounts — confirm OVD verification preceded first transaction</div>
+              <div class="provision-item">Check for any "pending KYC" accounts that received credit</div>
+              <div class="provision-item">Verify Beneficial Owner identification was completed at onboarding</div>
+            </div>
+            <div>
+              <div class="provision-section-title">Red Flags</div>
+              <div class="provision-red-flag">Account activation timestamp precedes KYC verification timestamp</div>
+              <div class="provision-red-flag">Loans disbursed to accounts with incomplete CDD</div>
+              <div class="provision-red-flag">BO identification missing for accounts with corporate customers</div>
+              <div class="provision-red-flag">System allows bypassing KYC step with "supervisor override"</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="provision">
+        <div class="provision-header" onclick="toggleProvision(this)">
+          <div class="provision-badge critical">🔴</div>
+          <div>
+            <div class="provision-title">STR Filing Obligations</div>
+            <div class="provision-ref">Regulation 12 · PMLA Section 12A</div>
+          </div>
+          <div class="provision-risk"><span class="risk-label critical">Critical</span></div>
+        </div>
+        <div class="provision-body">
+          <div class="provision-grid">
+            <div>
+              <div class="provision-section-title">Audit Procedure</div>
+              <div class="provision-item">Review STR filing register — date of suspicion vs. date of filing</div>
+              <div class="provision-item">Confirm no tipping-off occurred — check customer communication logs around STR dates</div>
+              <div class="provision-item">Verify Principal Officer is separately designated from Designated Director</div>
+              <div class="provision-item">Test threshold monitoring alerts for CTR — transactions above ₹10 lakhs</div>
+            </div>
+            <div>
+              <div class="provision-section-title">Red Flags</div>
+              <div class="provision-red-flag">STR filed more than 7 days after suspicion arose</div>
+              <div class="provision-red-flag">Account closure or transaction reversal immediately before STR filing</div>
+              <div class="provision-red-flag">Same person is both Designated Director and Principal Officer</div>
+              <div class="provision-red-flag">No STRs filed in last 12 months despite high-risk customer base</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HIGH RISK PROVISIONS -->
+      <h2>🟠 High Risk Provisions (Risk Tier 2)</h2>
+
+      <div class="provision">
+        <div class="provision-header" onclick="toggleProvision(this)">
+          <div class="provision-badge high">🟠</div>
+          <div>
+            <div class="provision-title">V-CIP Technical Standards</div>
+            <div class="provision-ref">Regulation 8 · Section 10(c)</div>
+          </div>
+          <div class="provision-risk"><span class="risk-label high">High Risk</span></div>
+        </div>
+        <div class="provision-body">
+          <div class="provision-grid">
+            <div>
+              <div class="provision-section-title">Audit Procedure</div>
+              <div class="provision-item">Request CERT-In VAPT certificate — check date (must be current)</div>
+              <div class="provision-item">Confirm video/audio data is stored only on India-based servers</div>
+              <div class="provision-item">Verify vendor contract explicitly prohibits data retention by vendor</div>
+              <div class="provision-item">Test liveness detection — check if system can be bypassed by photo</div>
+              <div class="provision-item">Confirm GPS coordinates are captured and stored per session</div>
+            </div>
+            <div>
+              <div class="provision-section-title">Red Flags</div>
+              <div class="provision-red-flag">VAPT certificate expired or from non-CERT-In empanelled firm</div>
+              <div class="provision-red-flag">Vendor contract silent on data retention — vendor retains video</div>
+              <div class="provision-red-flag">Servers located outside India (check hosting contract)</div>
+              <div class="provision-red-flag">No GPS data captured — V-CIP completed from foreign location possible</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="provision">
+        <div class="provision-header" onclick="toggleProvision(this)">
+          <div class="provision-badge high">🟠</div>
+          <div>
+            <div class="provision-title">CKYCR Upload — 10 Day Rule</div>
+            <div class="provision-ref">Regulation 14 · Section 16(a)</div>
+          </div>
+          <div class="provision-risk"><span class="risk-label high">High Risk</span></div>
+        </div>
+        <div class="provision-body">
+          <div class="provision-grid">
+            <div>
+              <div class="provision-section-title">Audit Procedure</div>
+              <div class="provision-item">Pull CKYCR upload log — calculate days between account opening and upload</div>
+              <div class="provision-item">Identify any accounts where upload exceeded 10 days</div>
+              <div class="provision-item">Check if uploads are batched weekly (violation) vs. daily</div>
+              <div class="provision-item">Verify CKYCR number is stored in core system post-upload</div>
+            </div>
+            <div>
+              <div class="provision-section-title">Red Flags</div>
+              <div class="provision-red-flag">Upload logs show weekly batch runs — every late account = violation</div>
+              <div class="provision-red-flag">Accounts with no CKYCR number despite being open for 30+ days</div>
+              <div class="provision-red-flag">CKYCR portal access credentials shared across teams</div>
+              <div class="provision-red-flag">No reconciliation between core system and CKYCR portal</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODERATE -->
+      <h2>🟡 Moderate Risk Provisions (Risk Tier 3)</h2>
+
+      <div class="provision">
+        <div class="provision-header" onclick="toggleProvision(this)">
+          <div class="provision-badge moderate">🟡</div>
+          <div>
+            <div class="provision-title">Board KYC Policy</div>
+            <div class="provision-ref">Regulation 16 · Section 18</div>
+          </div>
+          <div class="provision-risk"><span class="risk-label moderate">Moderate</span></div>
+        </div>
+        <div class="provision-body">
+          <div class="provision-grid">
+            <div>
+              <div class="provision-section-title">Audit Procedure</div>
+              <div class="provision-item">Obtain Board-approved KYC policy — check approval date</div>
+              <div class="provision-item">Verify policy covers all 16 provisions of this Direction</div>
+              <div class="provision-item">Confirm policy was updated after the November 2025 Direction</div>
+              <div class="provision-item">Check Board minutes reflect KYC policy review</div>
+            </div>
+            <div>
+              <div class="provision-section-title">Red Flags</div>
+              <div class="provision-red-flag">Policy last updated before November 28, 2025 — doesn't cover new Direction</div>
+              <div class="provision-red-flag">Policy exists but staff unaware of contents</div>
+              <div class="provision-red-flag">No annual review mechanism documented</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="takeaways" style="border-color: var(--border);">
+        <div class="takeaways-title" style="color: var(--text);">⚖️ Regulatory Disclaimer</div>
+        <p style="font-size:13px;line-height:1.7;color:var(--text-2);">Always refer to the original RBI circular (DOR.AML.REC.No.280/14.01.003/2025-26) as the definitive regulatory guidance. This analysis is for professional compliance and audit use only and does not constitute legal or regulatory advice. Consult qualified legal counsel for specific regulatory decisions.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="article-sidebar">
+
+    <div class="sidebar-card">
+      <div class="sidebar-title">Circular Reference</div>
+      <div class="sidebar-stat"><span class="sidebar-stat-label">Circular No.</span><span class="sidebar-stat-val">DOR.AML.REC.No.280</span></div>
+      <div class="sidebar-stat"><span class="sidebar-stat-label">Date</span><span class="sidebar-stat-val">Nov 28, 2025</span></div>
+      <div class="sidebar-stat"><span class="sidebar-stat-label">Updated</span><span class="sidebar-stat-val">Dec 29, 2025</span></div>
+      <div class="sidebar-stat"><span class="sidebar-stat-label">Applicability</span><span class="sidebar-stat-val">All NBFCs</span></div>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-title">Risk Summary</div>
+      <div class="sidebar-stat"><span class="sidebar-stat-label">🔴 Critical</span><span class="sidebar-stat-val red">7 provisions</span></div>
+      <div class="sidebar-stat"><span class="sidebar-stat-label">🟠 High Risk</span><span class="sidebar-stat-val high">5 provisions</span></div>
+      <div class="sidebar-stat"><span class="sidebar-stat-label">🟡 Moderate</span><span class="sidebar-stat-val">4 provisions</span></div>
+      <div class="sidebar-stat"><span class="sidebar-stat-label">Red Flags</span><span class="sidebar-stat-val gold">80+</span></div>
+      <div class="sidebar-stat"><span class="sidebar-stat-label">Real Cases</span><span class="sidebar-stat-val">6</span></div>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-title">Table of Contents</div>
+      <div class="toc-link" onclick="scrollToSection('critical')"><span class="toc-dot red"></span>Benami / Ghost Accounts</div>
+      <div class="toc-link" onclick="scrollToSection('critical')"><span class="toc-dot red"></span>Daily Sanctions Screening</div>
+      <div class="toc-link" onclick="scrollToSection('critical')"><span class="toc-dot red"></span>CDD Before Account Opening</div>
+      <div class="toc-link" onclick="scrollToSection('critical')"><span class="toc-dot red"></span>STR Filing Obligations</div>
+      <div class="toc-link" onclick="scrollToSection('high')"><span class="toc-dot high"></span>V-CIP Technical Standards</div>
+      <div class="toc-link" onclick="scrollToSection('high')"><span class="toc-dot high"></span>CKYCR Upload — 10 Days</div>
+      <div class="toc-link" onclick="scrollToSection('moderate')"><span class="toc-dot mod"></span>Board KYC Policy</div>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-title">Share This Analysis</div>
+      <button class="share-btn" onclick="copyLink()">⎘ Copy Link</button>
+      <button class="share-btn" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(window.location.href))">in Share on LinkedIn</button>
+      <button class="share-btn" onclick="window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(window.location.href)+'&text=RBI+NBFC-KYC+Directions+2025+Audit+Framework')">𝕏 Share on Twitter</button>
+    </div>
+
+    <div class="disclaimer">
+      For professional compliance use only. Always refer to original RBI circulars as the definitive regulatory source.
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">
+    <div class="footer-mark">A</div>
+    <span class="footer-name">AuditMind</span>
+  </div>
+  <p class="footer-text">© 2025 AuditMind · auditmind.in · For professional compliance use only</p>
+</footer>
+
+<script>
+function toggleTheme(){const h=document.documentElement;const t=h.getAttribute('data-theme')||'dark';const n=t==='dark'?'light':'dark';h.setAttribute('data-theme',n);localStorage.setItem('auditmind-theme',n);document.getElementById('themeBtn').textContent=n==='dark'?'☾':'☀';}
+(function(){const t=localStorage.getItem('auditmind-theme')||'dark';document.getElementById('themeBtn').textContent=t==='dark'?'☾':'☀';})();
+
+function toggleProvision(header){
+  const body=header.nextElementSibling;
+  const isOpen=body.classList.contains('open');
+  document.querySelectorAll('.provision-body').forEach(b=>b.classList.remove('open'));
+  if(!isOpen)body.classList.add('open');
+}
+
+function scrollToSection(tier){
+  const headings=document.querySelectorAll('.article-body h2');
+  headings.forEach(h=>{if((tier==='critical'&&h.textContent.includes('Critical'))||(tier==='high'&&h.textContent.includes('High'))||(tier==='moderate'&&h.textContent.includes('Moderate'))){h.scrollIntoView({behavior:'smooth',block:'start'});}});
+}
+
+function copyLink(){
+  navigator.clipboard.writeText(window.location.href).then(()=>{
+    const btn=document.querySelector('.share-btn');
+    const orig=btn.textContent;
+    btn.textContent='✓ Copied!';
+    setTimeout(()=>btn.textContent=orig,2000);
+  });
+}
+</script>
+</body>
+</html>
